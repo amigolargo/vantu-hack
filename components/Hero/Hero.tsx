@@ -21,7 +21,7 @@ const useStyles = createStyles((theme) => ({
     justifyContent: 'flex-end',
     alignItems: 'flex-start',
     paddingBottom: theme.spacing.xl * 2,
-    zIndex: 1,
+    zIndex: 0,
     position: 'relative',
   },
 
@@ -45,7 +45,7 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-export function HeroContentLeft({ setDrawerOpened, showMapImage, setCardsOpened }) {
+export function HeroContentLeft({ setDrawerOpened, showMapImage, setCardsOpened, cardsOpened }) {
   const { classes } = useStyles();
 
   return (
@@ -53,14 +53,13 @@ export function HeroContentLeft({ setDrawerOpened, showMapImage, setCardsOpened 
         sx={{
         position: 'absolute',
         backgroundImage:
-        `url(/${showMapImage ? 'lysebotn.png' : 'above.png'})`,
+        `url(/${showMapImage ? 'lysebotn-polygon.png' : 'above.png'})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         top: '56px',
         bottom: 0,
         left: 0,
         right: 0,
-        display: 'none' 
     }}>
       <Overlay
         gradient="linear-gradient(180deg, rgba(0, 0, 0, 0.125) 0%, rgba(0, 0, 0, .55) 80%)"
@@ -77,9 +76,9 @@ export function HeroContentLeft({ setDrawerOpened, showMapImage, setCardsOpened 
                 required 
                 sx={{color: '#ffffff', fontWeight: 500}}
                 />}
-            <Button variant="gradient" size="md" radius="xl" style={{ background: '#01A333', margin: '0 0 0 1em'}} onClick={() => {!showMapImage ? setDrawerOpened() : setCardsOpened()}}>
-                {!showMapImage ? 'Discover' : 'You found 5 sites'}
-            </Button>
+            {!showMapImage && <Button variant="gradient" size="md" radius="xl" style={{ background: '#01A333', margin: '0 0 0 1em'}} onClick={() => {!showMapImage ? setDrawerOpened() : setCardsOpened()}}>
+                {!showMapImage ? 'Discover' : 'Show me 5 sites'}
+            </Button>}
         </Box>
       </Container>
     </Box>
